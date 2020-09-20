@@ -1,0 +1,97 @@
+import { StatusBar } from 'expo-status-bar';
+import React, {useState, useEffect} from 'react';
+import { StyleSheet, View , Text, ScrollView} from 'react-native';
+import { List, TextInput, Button } from 'react-native-paper';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler';
+
+
+export default function AdminAI({navigation}) {
+  
+  const [hotels, setHotels] = useState([]);
+  const [count, setCount] = useState(0);
+  const [text, setText] = useState('');
+
+ 
+
+  const addHotel = () => {
+    const hotel = {
+      name: text,
+      index: count
+    };
+
+
+    setText('');
+    /*
+      arr = [h1, h2, h3, h4]
+      h6
+      [h1, h2, h3, h4, h6] <= [...arr, h6]
+    */
+    setHotels([...hotels, hotel]);
+    setCount(count+1);
+  }
+
+  const deleteHotel = (i) => {
+    const hotels_ = hotels.filter((item)=>{
+      return item.index !== i
+    });
+
+    setHotels(hotels_);
+
+  }
+  
+
+  const renderHotels = () => {
+    /*
+      arr = [1,2,3] => [1,4,9]
+      arr.map(item => {
+        return item*item;
+      }) => [1,4,9]
+    */
+    return hotels.map((item)=>{
+      return(
+        <List.Item
+          style={styles.listItem}
+          title={item.name}
+          description={"description"}
+          key={item.index}
+          right={(props)=>(<TouchableOpacity onPress={()=>{deleteHotel(item.index)}} ><List.Icon {...props} icon="delete"/></TouchableOpacity>)}
+        />
+      );
+    });
+  }
+
+  return (
+    <View style={{padding:15}}>
+      <TextInput
+        label="Enter Item Name..."
+        mode="outlined"
+        style={{marginBottom:2}}
+        value={text}
+        onChangeText={text_ => setText(text_)}
+      /> 
+      <Button mode="contained" onPress={()=>{addHotel()}}>
+        Add
+      </Button>
+      <ScrollView contentContainerStyle={{paddingBottom: 100,paddingTop:10}}  showsVerticalScrollIndicator={false}>
+      <List.Section>
+        {renderHotels()}
+      </List.Section>
+      </ScrollView>
+      <StatusBar hidden={true} style="auto" />
+    </View>
+  );
+}
+
+
+
+
+const styles = StyleSheet.create({
+ listItem:{
+   borderWidth: 1,
+   marginBottom: 7,
+   borderRadius:15
+ }
+});
