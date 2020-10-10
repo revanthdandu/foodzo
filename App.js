@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import * as firebase from "firebase";
+import "./firebase"
 import ListItems from "./components/ListItems";
 import Cart from "./components/Cart";
 import Home from "./components/Home";
@@ -10,17 +10,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Profile from "./components/Profile";
 import Login from "./components/Login";
 import PhnumberLogin from "./components/PhnumberLogin";
+import Scan from "./components/Scan";
 
-var firebaseConfig = {
-  apiKey: "AIzaSyDNQqJa7oSecfALBzaInCw2x0z7AUH1hOA",
-  authDomain: "foodzo-49e26.firebaseapp.com",
-  databaseURL: "https://foodzo-49e26.firebaseio.com",
-  projectId: "foodzo-49e26",
-  storageBucket: "foodzo-49e26.appspot.com",
-  messagingSenderId: "1098668614569",
-  appId: "1:1098668614569:web:ecb5b96839026640f3dab8",
-};
-firebase.initializeApp(firebaseConfig);
 
 export default function App({ navigation }) {
   const Stack = createStackNavigator();
@@ -51,7 +42,11 @@ export default function App({ navigation }) {
             options={{ headerShown: false }}
             component={PhnumberLogin}
           />
-          {/* <Stack.Screen name="PhoneAuth" component={PhoneAuth} /> */}
+          <Stack.Screen
+            name="Scan"
+            options={{ headerShown: false }}
+            component={Scan}
+          />
         </Stack.Navigator>
       </NavigationContainer>
 

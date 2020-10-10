@@ -14,6 +14,7 @@ import { Header } from "react-native-elements";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Swiper from "react-native-swiper";
 import * as firebase from "firebase";
+import Scan from './Scan';
 
 export default function Restaurants(props) {
   const [items, setItems] = useState([]);
@@ -88,7 +89,7 @@ export default function Restaurants(props) {
             justifyContent: "center",
           }}
         >
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => props.navigation.navigate("Scan")}>
             <AntDesign name="scan1" size={30} color={"#2c3e50"} />
           </TouchableOpacity>
         </View>

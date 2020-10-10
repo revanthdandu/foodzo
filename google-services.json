@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1098668614569",
+    "firebase_url": "https://foodzo-49e26.firebaseio.com",
+    "project_id": "foodzo-49e26",
+    "storage_bucket": "foodzo-49e26.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098668614569:android:f5a6e40875fec284f3dab8",
+        "android_client_info": {
+          "package_name": "com.foodzo.foodzo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1098668614569-2rkb4edqai73rhal7sd5tp9g9hesgrqg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.foodzo.foodzo",
+            "certificate_hash": "2d685e96987c09869035c42a345801beaf83cc7a"
+          }
+        },
+        {
+          "client_id": "1098668614569-vhghk64r40th6taacrrkj67tcaa8a0c8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoXMtzupyK93jCxjpA3kN7hX1jLKX12Zg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1098668614569-vhghk64r40th6taacrrkj67tcaa8a0c8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

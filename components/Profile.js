@@ -69,7 +69,7 @@ export default function Profile() {
 
   return (
     <View style={styles.container}>
-      <View style={{ flex: 1, flexDirection: 'row', paddingTop: 30, borderBottomWidth: 1.6, borderBottomStartRadius: 20, borderBottomEndRadius: 20 }}>
+      <View style={{ flex: 1, flexDirection: 'row', padding: 25, borderBottomWidth: 1.6, borderBottomStartRadius: 20, borderBottomEndRadius: 20 }}>
         <View style={{ flex: 2, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 10 }}>
           <TouchableOpacity onPress={() => editphotoref.current.snapTo(0)}>
             <Avatar.Image size={70} source={{ uri: 'https://i.telegraph.co.uk/multimedia/archive/03029/Becks1_5_3029072b.jpg' }} />
