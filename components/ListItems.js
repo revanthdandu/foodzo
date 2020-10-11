@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
-import { List, Searchbar } from 'react-native-paper';
+import { List, Searchbar, Card } from 'react-native-paper';
 import Feather from 'react-native-vector-icons/Feather';
 import * as firebase from 'firebase';
 
@@ -122,8 +122,9 @@ export default function ListItems(props) {
             return (
                 <List.Item
                     key={element[0]}
-                    style={styles.listItem}
+                    style={styles.listres}
                     title={element[1].name}
+                    titleStyle={styles.restitle}
                     description={"Rs." + element[1].price}
                     left={props => <Image source={{ uri: element[1].image.url }} /*alt="no image"*/ style={{ width: 100, height: 100, borderRadius: 5 }} />}
                     right={(props) => (
@@ -175,9 +176,11 @@ export default function ListItems(props) {
                     value={searchQuery}
                 />
                 <ScrollView contentContainerStyle={{ paddingBottom: 50, paddingTop: 10 }} showsVerticalScrollIndicator={false}>
+
                     <List.Section>
                         {displayItems()}
                     </List.Section>
+
                 </ScrollView>
 
             </View>
@@ -195,20 +198,20 @@ export default function ListItems(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ecf0f1',
-    },
-    listItem: {
-        borderWidth: 0.3,
-        borderColor: '#b2bec3',
-        marginBottom: 7,
-        borderRadius: 10,
         backgroundColor: 'white',
-        elevation: 5,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.7,
-        shadowRadius: 5
     },
+    // listItem: {
+    //     borderWidth: 0.3,
+    //     borderColor: '#b2bec3',
+    //     marginBottom: 7,
+    //     borderRadius: 10,
+    //     backgroundColor: 'white',
+    //     elevation: 5,
+    //     shadowColor: '#000',
+    //     shadowOffset: { width: 0, height: 0 },
+    //     shadowOpacity: 0.7,
+    //     shadowRadius: 5
+    // },
     adder: {
         height: 27,
         width: 10,
@@ -220,5 +223,15 @@ const styles = StyleSheet.create({
         flex: 0.3,
         flexDirection: 'row',
         overflow: 'hidden'
+    },
+    listres: {
+        borderColor: "#dfe6e9",
+        borderTopWidth: 1,
+        borderBottomWidth: 0.5,
+    },
+    restitle: {
+        marginTop: -60,
+        fontWeight: "600",
+        fontSize: 18,
     }
 });
