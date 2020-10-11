@@ -126,7 +126,7 @@ export default function ListItems(props) {
                     title={element[1].name}
                     titleStyle={styles.restitle}
                     description={"Rs." + element[1].price}
-                    left={props => <Image source={{ uri: element[1].image.url }} /*alt="no image"*/ style={{ width: 100, height: 100, borderRadius: 5 }} />}
+                    left={props => <Image source={{ uri: element[1].image.url }} /*alt="no image"*/ style={{ width: 80, height: 80, borderRadius: 5 }} />}
                     right={(props) => (
                         <View style={styles.adder}>
                             <TouchableOpacity onPress={() => {
@@ -168,7 +168,7 @@ export default function ListItems(props) {
 
     return (
         <View style={styles.container}>
-            <View style={{ padding: 15, flex: 9 }}>
+            <View style={{ padding: 9, flex: 9 }}>
                 <Text style={{ fontSize: 25, fontWeight: '600' }}>SVR Restaurant</Text>
                 <Searchbar
                     placeholder="Search"
@@ -225,13 +225,11 @@ const styles = StyleSheet.create({
         overflow: 'hidden'
     },
     listres: {
-        borderColor: "#dfe6e9",
-        borderTopWidth: 1,
-        borderBottomWidth: 0.5,
+        paddingBottom: 22
     },
     restitle: {
-        marginTop: -60,
         fontWeight: "600",
         fontSize: 18,
+        marginTop: -30
     }
 });
