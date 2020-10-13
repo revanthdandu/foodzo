@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from 'rea
 import { List, Searchbar, Card } from 'react-native-paper';
 import Feather from 'react-native-vector-icons/Feather';
 import * as firebase from 'firebase';
+import { useStateValue } from "../StateProvider";
 
 
 
@@ -13,12 +14,13 @@ export default function ListItems(props) {
 
     const [items, setItems] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
+    const [{ restname }, dispatch] = useStateValue();
 
     const onChangeSearch = (text) => {
         setSearchQuery(text);
 
         const database = firebase.database();
-        database.ref('items/').on('value', (data) => {
+        database.ref(`Restaurants/${restname}/items`).on('value', (data) => {
             // console.log(data.val());
             if (data && data.exists()) {
                 console.log(data.val());
@@ -69,7 +71,7 @@ export default function ListItems(props) {
     useEffect(() => {
 
         const database = firebase.database();
-        database.ref('items/').on('value', (data) => {
+        database.ref(`Restaurants/${restname}/items`).on('value', (data) => {
             // console.log(data.val());
             if (data && data.exists()) {
                 console.log(data.val());
@@ -169,7 +171,7 @@ export default function ListItems(props) {
     return (
         <View style={styles.container}>
             <View style={{ padding: 9, flex: 9 }}>
-                <Text style={{ fontSize: 25, fontWeight: '600' }}>SVR Restaurant</Text>
+                <Text style={{ fontSize: 25, fontWeight: '600' }}>{restname} Restaurant</Text>
                 <Searchbar
                     placeholder="Search"
                     onChangeText={onChangeSearch}

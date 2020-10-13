@@ -11,47 +11,52 @@ import Profile from "./components/Profile";
 import Login from "./components/Login";
 import PhnumberLogin from "./components/PhnumberLogin";
 import Scan from "./components/Scan";
+import { StateProvider } from "./StateProvider";
+import reducer, { initialState } from "./reducer";
 
 
 export default function App({ navigation }) {
   const Stack = createStackNavigator();
 
   return (
-    <View style={styles.container}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName={"Login"}>
-          <Stack.Screen name="ListItems" component={ListItems} />
-          <Stack.Screen name="Cart" component={Cart} />
-          <Stack.Screen
-            name="Home"
-            options={{ headerShown: false }}
-            component={Home}
-          />
-          <Stack.Screen
-            name="Profile"
-            options={{ headerShown: false }}
-            component={Profile}
-          />
-          <Stack.Screen
-            name="Login"
-            options={{ headerShown: false }}
-            component={Login}
-          />
-          <Stack.Screen
-            name="PhnumberLogin"
-            options={{ headerShown: false }}
-            component={PhnumberLogin}
-          />
-          <Stack.Screen
-            name="Scan"
-            options={{ headerShown: false }}
-            component={Scan}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <View style={styles.container}>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName={"Login"}>
+            <Stack.Screen name="ListItems" component={ListItems} />
+            <Stack.Screen name="Cart" component={Cart} />
+            <Stack.Screen
+              name="Home"
+              options={{ headerShown: false }}
+              component={Home}
+            />
+            <Stack.Screen
+              name="Profile"
+              options={{ headerShown: false }}
+              component={Profile}
+            />
+            <Stack.Screen
+              name="Login"
+              options={{ headerShown: false }}
+              component={Login}
+            />
+            <Stack.Screen
+              name="PhnumberLogin"
+              options={{ headerShown: false }}
+              component={PhnumberLogin}
+            />
+            <Stack.Screen
+              name="Scan"
+              options={{ headerShown: false }}
+              component={Scan}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
 
-      <StatusBar style="none" />
-    </View>
+        <StatusBar style="none" />
+      </View>
+    </StateProvider>
+
   );
 }
 

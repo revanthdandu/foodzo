@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import QRCamera from './QRCamera';
 import ListItems from './ListItems';
+import { useStateValue } from "../StateProvider";
 
 const window = Dimensions.get("window");
 
 export default function Scan({ navigation }) {
+    const [{ restname }, dispatch] = useStateValue();
 
     const afterScan = (type, data) => {
         console.log(data);
-        if (data === 'svr-restaurant') {
-            navigation.navigate("ListItems")
-        }
+        dispatch({
+            type: 'SET_RESTAURANT',
+            restname: data
+        })
+        navigation.navigate("ListItems")
+
     }
 
     return (
