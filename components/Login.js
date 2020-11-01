@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, StyleSheet, Text, Button, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import logo from "./splash.png";
+
 import PhnumberLogin from "./PhnumberLogin";
 import { SocialIcon } from 'react-native-elements';
+import { auth } from "../firebase"
+
 
 export default function Login({ navigation }) {
+
+    useEffect(() => {
+        auth.onAuthStateChanged((authUser) => {
+            if (authUser !== null) {
+                console.log(authUser.uid);
+                if (authUser.uid) {
+                    navigation.navigate("Home")
+                }
+            }
+
+        })
+    }, [])
+
+
+
+
     return (
         <View style={styles.conatiner}>
             <View style={styles.login__logo}>

@@ -7,9 +7,10 @@ import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import RBSheet from "react-native-raw-bottom-sheet";
 import Accordion from 'react-native-collapsible/Accordion';
+import { auth } from '../firebase';
 
 
-export default function Profile() {
+export default function Profile({ navigation }) {
 
   const rendereditproContent = () => (
 
@@ -54,6 +55,12 @@ export default function Profile() {
   );
 
 
+  const Logoutuser = () => {
+    auth.signOut();
+    navigation.navigate("Login");
+  }
+
+
   const renderHeader = () => (
     <View style={styles.header}>
       <View style={styles.panelHeader}>
@@ -69,15 +76,15 @@ export default function Profile() {
 
   return (
     <View style={styles.container}>
-      <View style={{ flex: 1, flexDirection: 'row', padding: 25, borderBottomWidth: 1.6, borderBottomStartRadius: 20, borderBottomEndRadius: 20 }}>
+      <View style={{ flex: 1, flexDirection: 'row', padding: 20, paddingBottom: 10, borderBottomWidth: 1.6, borderBottomStartRadius: 20, borderBottomEndRadius: 20 }}>
         <View style={{ flex: 2, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 10 }}>
           <TouchableOpacity onPress={() => editphotoref.current.snapTo(0)}>
             <Avatar.Image size={70} source={{ uri: 'https://i.telegraph.co.uk/multimedia/archive/03029/Becks1_5_3029072b.jpg' }} />
           </TouchableOpacity>
         </View>
         <View style={{ flex: 5, paddingLeft: 10 }}>
-          <Text style={{ fontWeight: 'bold', fontSize: 20, letterSpacing: 1, paddingTop: 10, color: '#2d3436' }}>REVANTH DANDU</Text>
-          <Text style={{ color: '#636e72' }}>8790588214</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: 20, letterSpacing: 1, paddingTop: 10, color: '#2d3436' }}>Revanth</Text>
+          <Text style={{ color: '#636e72' }}>+918790588214</Text>
           <Text style={{ color: '#636e72' }}>revanthdandu99@gmail.com</Text>
         </View>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -85,6 +92,7 @@ export default function Profile() {
             <Feather name="edit" size={30} color={'#353b48'} />
           </TouchableOpacity>
         </View>
+        <Button title="LOGOUT" onPress={Logoutuser} />
       </View>
 
       <BottomSheet

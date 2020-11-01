@@ -1,7 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import "./firebase"
+import { auth } from "./firebase";
 import ListItems from "./components/ListItems";
 import Cart from "./components/Cart";
 import Home from "./components/Home";
@@ -15,8 +16,10 @@ import { StateProvider } from "./StateProvider";
 import reducer, { initialState } from "./reducer";
 
 
+
 export default function App({ navigation }) {
   const Stack = createStackNavigator();
+
 
   return (
     <StateProvider initialState={initialState} reducer={reducer}>

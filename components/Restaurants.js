@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   Image,
   RefreshControl,
+  BackHandler,
 } from "react-native";
 import { List, Searchbar, Appbar, Card, Title } from "react-native-paper";
 import ListItems from "./ListItems";
@@ -39,6 +40,8 @@ export default function Restaurants(props) {
 
     wait(2000).then(() => setRefreshing(false));
   }, []);
+
+
 
 
   useEffect(() => {
@@ -100,7 +103,9 @@ export default function Restaurants(props) {
                   borderTopLeftRadius: 9,
                   borderTopRightRadius: 9
                 }}
+
               />
+
             </View>
             <View style={{ flex: 1, flexDirection: 'row', height: 70, padding: 10 }}>
               <View style={{ flex: 3 }}>
@@ -266,5 +271,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.7,
     shadowRadius: 5,
-  }
+  },
+
 });

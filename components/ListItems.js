@@ -5,6 +5,7 @@ import { List, Searchbar, Card } from 'react-native-paper';
 import Feather from 'react-native-vector-icons/Feather';
 import * as firebase from 'firebase';
 import { useStateValue } from "../StateProvider";
+import { auth } from '../firebase';
 
 
 
@@ -44,7 +45,7 @@ export default function ListItems(props) {
 
     const addOrdersDatabase = (el) => {
         const database = firebase.database();
-        database.ref('orders/').push(el);
+        database.ref(`orders/${auth.currentUser.uid}/`).push(el);
     }
 
 

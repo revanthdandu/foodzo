@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, BackHandler } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Cart from './Cart';
 import Restaurants from './Restaurants';
@@ -15,6 +15,8 @@ import Profile from './Profile';
 export default function Home() {
 
   const Tab = createBottomTabNavigator();
+
+
 
   return (
 
