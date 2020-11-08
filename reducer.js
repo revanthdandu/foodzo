@@ -1,6 +1,7 @@
 export const initialState = {
     restname: '',
     user: null,
+    favorites: []
 };
 
 const reducer = (state, action) => {
@@ -10,6 +11,9 @@ const reducer = (state, action) => {
             break;
         case 'SET_USER':
             return { ...state, user: action.user };
+            break;
+        case 'ADD_FAVORITE':
+            return { ...state, favorites: [...state.favorites, action.favorite] }
             break;
         default:
             return state;

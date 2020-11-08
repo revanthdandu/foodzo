@@ -29,7 +29,7 @@ export default function Login({ navigation }) {
             <View style={styles.login__logo}>
 
             </View>
-            <View style={{ flex: 1, backgroundColor: "white", borderTopLeftRadius: 10, borderTopRightRadius: 10, padding: 15 }}>
+            <View style={{ flex: 0.8, backgroundColor: "white", borderTopLeftRadius: 10, borderTopRightRadius: 10, padding: 15 }}>
                 <Text style={{ fontWeight: "bold", fontSize: 22, letterSpacing: 1, color: "#2c3e50", }}>
                     make your ordering easy!
                 </Text>
@@ -53,7 +53,7 @@ export default function Login({ navigation }) {
                         Continue with Phone Number
           </Text>
                 </TouchableOpacity>
-                <View style={{ flex: 1, flexDirection: "row" }}>
+                <View style={{ flex: 0.8, flexDirection: "row" }}>
                     <View
                         style={{
                             flex: 1,
@@ -61,21 +61,47 @@ export default function Login({ navigation }) {
                             justifyContent: "center",
                         }}
                     >
-                        <TouchableOpacity>
-                            <SocialIcon
-                                title='Sign In With Google'
-                                button
-                                type='google'
-                            />
+                        <TouchableOpacity onPress={() => navigation.navigate("Signup")}
+                            style={{
+                                height: 45, width: "100%", backgroundColor: "#ff6348", alignItems: "center", justifyContent: "center", borderRadius: 5, marginTop: 20,
+                                elevation: 5,
+                                shadowColor: "#000",
+                                shadowOffset: { width: 0, height: 0 },
+                                shadowOpacity: 0.7,
+                                shadowRadius: 5,
+                            }}>
+                            <Text
+                                style={{
+                                    textAlign: "center",
+                                    fontWeight: "bold",
+                                    color: "#ecf0f1",
+                                    fontSize: 16,
+                                }}
+                            >
+                                SIGN UP
+          </Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={{ flex: 0.6, justifyContent: "center" }}>
-                        <TouchableOpacity>
-                            <SocialIcon
-                                title='Sign In With Facebook'
-
-                                type='facebook'
-                            />
+                    <View style={{ flex: 1, justifyContent: "center" }}>
+                        <TouchableOpacity onPress={() => navigation.navigate("Loginnml")}
+                            style={{
+                                height: 45, width: "100%", backgroundColor: "#00b894", alignItems: "center", justifyContent: "center", borderRadius: 5, marginTop: 20,
+                                elevation: 5,
+                                shadowColor: "#000",
+                                shadowOffset: { width: 0, height: 0 },
+                                shadowOpacity: 0.7,
+                                shadowRadius: 5,
+                            }}>
+                            <Text
+                                style={{
+                                    textAlign: "center",
+                                    fontWeight: "bold",
+                                    color: "#ecf0f1",
+                                    fontSize: 16,
+                                }}
+                            >
+                                LOG IN
+          </Text>
                         </TouchableOpacity>
                     </View>
                 </View>

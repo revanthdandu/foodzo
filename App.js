@@ -14,6 +14,9 @@ import PhnumberLogin from "./components/PhnumberLogin";
 import Scan from "./components/Scan";
 import { StateProvider } from "./StateProvider";
 import reducer, { initialState } from "./reducer";
+import Loginnml from "./components/Loginnml";
+import Signup from "./components/Signup";
+import Favorite from "./components/Favorite";
 
 
 
@@ -52,6 +55,21 @@ export default function App({ navigation }) {
               name="Scan"
               options={{ headerShown: false }}
               component={Scan}
+            />
+            <Stack.Screen
+              name="Loginnml"
+              options={{ headerShown: false }}
+              component={Loginnml}
+            />
+            <Stack.Screen
+              name="Signup"
+              options={{ headerShown: false }}
+              component={Signup}
+            />
+            <Stack.Screen
+              name="Favorite"
+              options={{ headerShown: false }}
+              component={Favorite}
             />
           </Stack.Navigator>
         </NavigationContainer>

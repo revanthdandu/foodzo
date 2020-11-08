@@ -1,16 +1,22 @@
 import React, { useRef } from 'react';
-import { View, StyleSheet, Text, Button, KeyboardAvoidingView } from 'react-native';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { View, StyleSheet, Text, Button, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { ScrollView, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Avatar, TextInput, TouchableRipple } from 'react-native-paper';
 import Feather from 'react-native-vector-icons/Feather';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import RBSheet from "react-native-raw-bottom-sheet";
-import Accordion from 'react-native-collapsible/Accordion';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { auth } from '../firebase';
+import { useStateValue } from '../StateProvider';
 
 
 export default function Profile({ navigation }) {
+
+  const [{ favorites }, dispatch] = useStateValue();
 
   const rendereditproContent = () => (
 
@@ -76,6 +82,7 @@ export default function Profile({ navigation }) {
 
   return (
     <View style={styles.container}>
+
       <View style={{ flex: 1, flexDirection: 'row', padding: 20, paddingBottom: 10, borderBottomWidth: 1.6, borderBottomStartRadius: 20, borderBottomEndRadius: 20 }}>
         <View style={{ flex: 2, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 10 }}>
           <TouchableOpacity onPress={() => editphotoref.current.snapTo(0)}>
@@ -92,7 +99,11 @@ export default function Profile({ navigation }) {
             <Feather name="edit" size={30} color={'#353b48'} />
           </TouchableOpacity>
         </View>
-        <Button title="LOGOUT" onPress={Logoutuser} />
+
+
+
+
+
       </View>
 
       <BottomSheet
@@ -114,10 +125,65 @@ export default function Profile({ navigation }) {
         enabledBottomInitialAnimation={true}
       />
 
-      <View style={{ flex: 6 }}>
+      {/* <View style={{ flex: 6, padding: 10 }}>
+
+        <TouchableOpacity style={{ height: 40, marginBottom: 3, justifyContent: 'center', paddingLeft: 10 }}>
+          <AntDesign name='shoppingcart' size={30} color={'#2c3e50'} style={{ flexWrap: 'wrap' }} />
+          <Text style={{ fontSize: 16, letterSpacing: 0.5 }}>Cart</Text>
+        </TouchableOpacity>
+        <Button title="LOGOUT" onPress={Logoutuser} />
+      </View> */}
+      <View style={{ flex: 6, padding: 10 }}>
+
+
+        <TouchableRipple
+          rippleColor="rgba(0, 0, 0, .10)"
+          style={{ padding: 8 }}
+          onPress={() => console.log('Pressed')}
+        >
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingLeft: 10 }}>
+            <MaterialCommunityIcon name='food' size={30} color={'#2c3e50'} />
+            <Text style={{ fontSize: 16, letterSpacing: 0.5, color: '#2c3e50', fontWeight: '900', alignSelf: 'center', paddingLeft: 20 }}>Your Orders</Text>
+          </View>
+        </TouchableRipple>
+
+        <TouchableRipple
+          rippleColor="rgba(0, 0, 0, .10)"
+          style={{ padding: 8 }}
+          onPress={() => navigation.navigate('Favorite')}
+        >
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingLeft: 10 }}>
+            <MaterialIcon name='favorite-border' size={30} color={'#2c3e50'} />
+            <Text style={{ fontSize: 16, letterSpacing: 0.5, color: '#2c3e50', fontWeight: '900', alignSelf: 'center', paddingLeft: 20 }}>Favorite restaurants</Text>
+          </View>
+        </TouchableRipple>
+
+        <TouchableRipple
+          rippleColor="rgba(0, 0, 0, .10)"
+          style={{ padding: 8 }}
+          onPress={() => console.log('Pressed')}
+        >
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingLeft: 10 }}>
+            <FontAwesome name='address-book-o' size={30} color={'#2c3e50'} />
+            <Text style={{ fontSize: 16, letterSpacing: 0.5, color: '#2c3e50', fontWeight: '900', alignSelf: 'center', paddingLeft: 20 }}>Address Book</Text>
+          </View>
+        </TouchableRipple>
+
+        <TouchableRipple
+          rippleColor="rgba(0, 0, 0, .10)"
+          style={{ padding: 8 }}
+          onPress={Logoutuser}
+        >
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingLeft: 10 }}>
+            <FontAwesome name='power-off' size={30} color={'#2c3e50'} />
+            <Text style={{ fontSize: 16, letterSpacing: 0.5, color: '#2c3e50', fontWeight: '900', alignSelf: 'center', paddingLeft: 20 }}>Log Out</Text>
+          </View>
+        </TouchableRipple>
+
+
+
 
       </View>
-
     </View>
   );
 }
