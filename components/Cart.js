@@ -6,13 +6,13 @@ import { List } from 'react-native-paper';
 import * as firebase from 'firebase';
 import { auth } from '../firebase';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import RNUpiPayment from 'react-native-upi-payment';
+
 
 
 export default function Cart({ navigation }) {
 
     const [orderItems, setOrderItems] = useState([]);
-    const [total, setTotal] = useState(250);
+    const [total, setTotal] = useState(0);
 
     useEffect(() => {
         const database = firebase.database();
@@ -46,13 +46,13 @@ export default function Cart({ navigation }) {
         });
     }
 
-    const Payment = () => {
-        RNUpiPayment.initializePayment({
-            vpa: '8790588214@upi', // or can be john@ybl or mobileNo@upi
-            payeeName: 'John Doe',
-            amount: '1',
-            transactionRef: 'aasf-332-aoei-fn'
-        }, () => { console.log('success') }, () => { console.log('failure') });
+    const getTotal = () => {
+        let total = 0;
+        orderItems.forEach((element) => {
+            total += element[1].quantity * element[1].price;
+        })
+
+        return total
     }
 
     return (
@@ -73,10 +73,10 @@ export default function Cart({ navigation }) {
                 <Text style={{ fontWeight: 'bold', fontSize: 25, alignSelf: 'center', letterSpacing: 1 }}>TOTAL:</Text>
             </View> */}
             <View style={styles.checkout}>
-                <TouchableOpacity onPress={Payment} style={styles.checkoutbt}>
+                <TouchableOpacity onPress={() => console.log("pressed checkout")} style={styles.checkoutbt}>
                     <View style={{ alignItems: 'flex-start', flex: 3, paddingLeft: 15, justifyContent: 'center' }}>
                         <Text style={{ fontWeight: '600', color: 'rgba(236, 240, 241,1.0)', fontSize: 25, }}>
-                            Total:₹ {total}
+                            Total:₹ {getTotal()}
                         </Text>
                     </View>
                     <View style={{ alignItems: 'flex-end', flex: 3, justifyContent: 'center' }}>

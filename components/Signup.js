@@ -9,9 +9,18 @@ export default function Signup({ navigation }) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [displayname, setDisplayname] = useState('');
+    const [phonenumber, setPhonenumber] = useState('');
 
     const signUpUser = () => {
         auth.createUserWithEmailAndPassword(email, password).then(user => {
+            user.user.updateProfile({
+                displayName: displayname
+            }).then(() => { })
+
+            user.user.updateProfile({
+                phoneNumber: phonenumber
+            }).then(() => { })
             setPassword('');
             setEmail('');
             alert("SIGNED UP SUCESSFULLY")
@@ -28,8 +37,8 @@ export default function Signup({ navigation }) {
 
                 <Text style={{ fontSize: 25, color: '#e17055', fontWeight: 'bold', marginTop: 45 }}>Create new account </Text>
 
-                <TextInput style={{ height: 55, width: 350, borderWidth: 2, borderColor: '#b2bec3', alignSelf: 'center', marginTop: 50, borderRadius: 25, paddingLeft: 25, fontSize: 20 }} placeholder={"Full name"} />
-                <TextInput style={{ height: 55, width: 350, borderWidth: 2, borderColor: '#b2bec3', alignSelf: 'center', marginTop: 25, borderRadius: 25, paddingLeft: 25, fontSize: 20 }} placeholder={"Phone number"} />
+                <TextInput onChangeText={(text) => { setDisplayname(text) }} style={{ height: 55, width: 350, borderWidth: 2, borderColor: '#b2bec3', alignSelf: 'center', marginTop: 50, borderRadius: 25, paddingLeft: 25, fontSize: 20 }} placeholder={"Full name"} />
+                <TextInput onChangeText={(text) => { setPhonenumber(text) }} style={{ height: 55, width: 350, borderWidth: 2, borderColor: '#b2bec3', alignSelf: 'center', marginTop: 25, borderRadius: 25, paddingLeft: 25, fontSize: 20 }} placeholder={"Phone number"} />
                 <TextInput onChangeText={(text) => { setEmail(text) }} style={{ height: 55, width: 350, borderWidth: 2, borderColor: '#b2bec3', alignSelf: 'center', marginTop: 25, borderRadius: 25, paddingLeft: 25, fontSize: 20 }} placeholder={"Email"} />
                 <TextInput onChangeText={(text) => { setPassword(text) }} style={{ height: 55, width: 350, borderWidth: 2, borderColor: '#b2bec3', alignSelf: 'center', marginTop: 25, borderRadius: 25, paddingLeft: 25, fontSize: 20 }} placeholder={"Password"} />
 

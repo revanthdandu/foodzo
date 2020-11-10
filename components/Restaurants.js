@@ -67,15 +67,21 @@ export default function Restaurants(props) {
 
     })
 
-    database.ref("items/").on("value", (data) => {
+    database.ref("Restaurants/").on("value", (data) => {
       // console.log(data.val());
       if (data && data.exists()) {
         // console.log(data.val());
         let data_ = Object.entries(data.val());
+        // console.log("offers")
+        // console.log(data_)
         data_ = data_.map((element) => {
-          return element[1].image.url;
+          console.log(element)
+          return element[1]['offers'] !== undefined ? element[1]['offers']['url'] : '';
         });
         console.log(data_);
+        data_ = data_.filter((item) => {
+          return item !== ''
+        })
         setItems(data_);
       }
     });
@@ -106,7 +112,12 @@ export default function Restaurants(props) {
   }
 
   const renderSwipeImages = () => {
+    console.log('these are items')
+    console.log(items)
     return items.map((url, i) => {
+      if (url !== '') {
+
+      }
       return (
         <View key={i}>
           <View>
@@ -128,7 +139,8 @@ export default function Restaurants(props) {
     >
       <View style={styles.container}>
         <View style={styles.header}>
-          <View
+
+          <TouchableOpacity
             style={{
               flex: 6,
               alignItems: "flex-start",
@@ -136,41 +148,43 @@ export default function Restaurants(props) {
               paddingLeft: 20,
             }}
           >
-            <TouchableOpacity>
-              <View>
-                <Text style={{ fontWeight: "bold", fontSize: 20 }}>Home</Text>
-                <Text>Location will be here!</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View
+
+            <View>
+              <Text style={{ fontWeight: "bold", fontSize: 20 }}>Home</Text>
+              <Text>Location will be here!</Text>
+            </View>
+
+          </TouchableOpacity>
+
+          <TouchableOpacity
             style={{
               flex: 1,
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <TouchableOpacity>
-              <AntDesign name="search1" size={24} color={"#2c3e50"} />
-            </TouchableOpacity>
-          </View>
-          <View
+
+            <AntDesign name="search1" size={24} color={"#2c3e50"} />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate("Scan")}
             style={{
               flex: 1,
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <TouchableOpacity onPress={() => props.navigation.navigate("Scan")}>
-              <AntDesign name="scan1" size={30} color={"#2c3e50"} />
-            </TouchableOpacity>
-          </View>
+
+            <AntDesign name="scan1" size={30} color={"#2c3e50"} />
+          </TouchableOpacity>
+
         </View>
 
         <View style={styles.centerview}>
           <ScrollView>
             <View style={{ borderRadius: 10 }}>
-              <Swiper height={200} autoplay={true} horizontal={false} >
+              <Swiper height={200} autoplay={true}  >
                 {renderSwipeImages()}
               </Swiper>
             </View>
@@ -188,7 +202,7 @@ export default function Restaurants(props) {
         </View>
         <StatusBar />
       </View>
-    </ScrollView>
+    </ScrollView >
   );
 }
 

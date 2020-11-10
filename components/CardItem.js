@@ -25,7 +25,7 @@ import { useStateValue } from "../StateProvider";
 import { auth } from '../firebase';
 
 
-export default function CardItem({ item, index }) {
+export default function CardItem({ item, index, deletes, id }) {
 
     const [bookmk, setBookmk] = useState('bookmark-o');
     const [{ favorites }, dispatch] = useStateValue();
@@ -43,12 +43,17 @@ export default function CardItem({ item, index }) {
         }
         if (bookmk === 'bookmark') {
             setBookmk('bookmark-o')
-            const database = firebase.database();
-            database.ref(`orders/${auth.currentUser.uid}/favorites/`).remove();
+
         }
 
     }
 
+    const delete_ = () => {
+
+        const database = firebase.database();
+        database.ref(`orders/${auth.currentUser.uid}/favorites/${id}`).remove();
+
+    }
 
     return (
         <Card style={styles.cstyle}>
@@ -68,18 +73,32 @@ export default function CardItem({ item, index }) {
                 >
                     <TouchableOpacity activeOpacity={1} style={{ padding: 10 }} >
                         <View style={{ borderRadius: 200, width: 35, height: 35, alignItems: 'center', justifyContent: 'center', backgroundColor: '#ecf0f1', borderRadius: 200, alignSelf: 'flex-end' }}>
-                            <TouchableOpacity onPress={() => { bookmark() }}>
-                                <FontAwesome name={bookmk} size={20} color={'#2c3e50'} />
-                            </TouchableOpacity>
+
+                            {
+                                deletes == true ? <TouchableOpacity onPress={() => { delete_() }}>
+                                    <FontAwesome name='trash' size={20} color={'#2c3e50'} />
+                                </TouchableOpacity> :
+                                    <TouchableOpacity onPress={() => { bookmark() }}>
+                                        <FontAwesome name={bookmk} size={20} color={'#2c3e50'} />
+                                    </TouchableOpacity>
+
+                            }
                         </View>
                     </TouchableOpacity>
+
+                    <View style={{ justifyContent: 'flex-end', paddingTop: 90 }}>
+                        <View style={{ width: 80, height: 20, backgroundColor: '#0984e3', borderTopRightRadius: 5, borderBottomRightRadius: 5, justifyContent: 'center' }}>
+                            <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>{item.restprofile.offerper}</Text>
+                        </View>
+                    </View>
+
                 </ImageBackground>
 
             </View>
             <View style={{ flex: 1, flexDirection: 'row', height: 70, padding: 10 }}>
                 <View style={{ flex: 3 }}>
                     <Text style={{ fontWeight: '900', fontSize: 18, letterSpacing: 0.5, color: '#1e272e' }}>{item.name}</Text>
-                    <Text style={{ fontSize: 12, letterSpacing: 1, color: '#576574' }}>fast food,italian,pizza</Text>
+                    <Text style={{ fontSize: 12, letterSpacing: 1, color: '#576574' }}>{item.restprofile.description}</Text>
                 </View>
                 <View style={{ flex: 1, flexDirection: 'column' }}>
                     <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -94,7 +113,7 @@ export default function CardItem({ item, index }) {
                         </View>
                     </View>
                     <View style={{ flex: 1 }}>
-                        <Text style={{ fontSize: 12, letterSpacing: 1, color: '#576574', textAlign: 'right' }}>₹500 for one</Text>
+                        <Text style={{ fontSize: 12, letterSpacing: 1, color: '#576574', textAlign: 'right' }}>₹ {item.restprofile.averagep}</Text>
                     </View>
                 </View>
             </View>

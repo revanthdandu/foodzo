@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, StyleSheet, Text, Button, Image } from "react-native";
+import { View, StyleSheet, Text, Button, Image, ImageBackground } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 import PhnumberLogin from "./PhnumberLogin";
@@ -25,7 +25,8 @@ export default function Login({ navigation }) {
 
 
     return (
-        <View style={styles.conatiner}>
+        <ImageBackground source={{ uri: 'https://ak.picdn.net/shutterstock/videos/17703349/thumb/1.jpg' }} style={styles.images}>
+
             <View style={styles.login__logo}>
 
             </View>
@@ -106,14 +107,15 @@ export default function Login({ navigation }) {
                     </View>
                 </View>
             </View>
-        </View>
+        </ImageBackground>
+
     );
 }
 
 const styles = StyleSheet.create({
-    conatiner: {
+    images: {
         flex: 1,
-        backgroundColor: '#1B9CFC'
+        resizeMode: 'cover'
     },
     login__logo: {
         flex: 2.5,

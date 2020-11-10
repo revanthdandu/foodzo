@@ -48,13 +48,7 @@ export default function Loginnml({ navigation }) {
       </TouchableOpacity>
 
 
-      <Text style={{ marginTop: 30, fontSize: 20, textAlign: 'center' }}>or</Text>
 
-      <SocialIcon style={{ width: 300, alignSelf: 'center', marginTop: 25 }}
-        title='Log In With Facebook'
-        button
-        type='facebook'
-      />
       <StatusBar style="auto" />
     </View>
   );

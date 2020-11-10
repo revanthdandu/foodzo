@@ -86,13 +86,13 @@ export default function Profile({ navigation }) {
       <View style={{ flex: 1, flexDirection: 'row', padding: 20, paddingBottom: 10, borderBottomWidth: 1.6, borderBottomStartRadius: 20, borderBottomEndRadius: 20 }}>
         <View style={{ flex: 2, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 10 }}>
           <TouchableOpacity onPress={() => editphotoref.current.snapTo(0)}>
-            <Avatar.Image size={70} source={{ uri: 'https://i.telegraph.co.uk/multimedia/archive/03029/Becks1_5_3029072b.jpg' }} />
+            <Avatar.Image size={70} source={{ uri: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' }} />
           </TouchableOpacity>
         </View>
         <View style={{ flex: 5, paddingLeft: 10 }}>
-          <Text style={{ fontWeight: 'bold', fontSize: 20, letterSpacing: 1, paddingTop: 10, color: '#2d3436' }}>Revanth</Text>
-          <Text style={{ color: '#636e72' }}>+918790588214</Text>
-          <Text style={{ color: '#636e72' }}>revanthdandu99@gmail.com</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: 20, letterSpacing: 1, paddingTop: 10, color: '#2d3436' }}>{auth.currentUser.displayName}</Text>
+          <Text style={{ color: '#636e72' }}>{auth.currentUser.phoneNumber}</Text>
+          <Text style={{ color: '#636e72' }}>{auth.currentUser.email}</Text>
         </View>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <TouchableOpacity onPress={() => editproref.current.snapTo(0)}>
